@@ -1,0 +1,40 @@
+--local nvim_lsp = require('lspconfig')
+--
+--nvim_lsp.rust_analyzer.setup({
+--    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+--    flags = {
+--        debounce_text_changes = 150,
+--    },
+--    settings = {
+--        ["rust-analyzer"] = {
+--            assist = {
+--                importGranularity = "module",
+--                importPrefix = "by_self",
+--            },
+--            cargo = {
+--                loadOutDirsFromCheck = true,
+--            },
+--            procMacro = {
+--                enable = true,
+--            },
+--        },
+--    },
+--    on_attach = function(client, bufnr)
+--        require('lsp_signature').on_attach({
+--            bind = true,
+--            doc_lines = 2,
+--            floating_window = true,
+--            hint_enable = true,
+--            handler_opts = {
+--                border = "single",
+--            },
+--            fix_pos = function(_, pos, _)
+--                pos[1] = pos[1] - 2
+--                return pos
+--            end,
+--            hint_prefix = "   ",
+--        })
+--    end,
+--})
+
+
