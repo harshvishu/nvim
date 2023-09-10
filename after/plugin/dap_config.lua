@@ -16,25 +16,20 @@ vim.keymap.set("n", "<Leader>dt", ':DapToggleBreakpoint<CR>')
 vim.keymap.set("n", "<Leader>dx", ':DapTerminate<CR>')
 vim.keymap.set("n", "<Leader>do", ':DapStepOver<CR>')
 
+vim.keymap.set("n", "<F1>", dap.step_into)
+vim.keymap.set("n", "<F2>", dap.step_over)
+vim.keymap.set("n", "<F3>", dap.step_out)
+vim.keymap.set("n", "<F4>", dap.continue)
 
--- Codelldb DAP
---local mason_registry = require('mason-registry')
---
---local codelldb = mason_registry.get_package('codelldb'):get_install_path()
---
---local extension_path = codelldb .. "/extension/"
---local codelldb_path = extension_path .. "adapter/codelldb"
---local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
---
---dap.adapters.codelldb = {
---  type = 'server',
---  port = "${port}",
---  executable = {
---    -- CHANGE THIS to your path!
---    command = extension_path, 
---    args = {"--port", "${port}"},
---
---    -- On windows you may have to uncomment this:
---    -- detached = false,
---  }
---}
+vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
+vim.keymap.set("n", "<leader>cb", function()
+    dap.set_breakpoint(vim.fn.input("Breakpoint Condition: "))
+end)
+vim.keymap.set("n", "<leader>lb", function()
+    dap.list_breakpoints()
+    vim.cmd.copen()
+end, { desc = "List breakpoints in quickfix list" })
+
+vim.fn.sign_define('DapBreakpoint', {text='🔴', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointCondition', {text='🔵', texthl='', linehl='', numhl=''})
+
